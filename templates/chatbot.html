@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My chatbot</title>
+    </head>
+    <body>
+        <h1>Ask a question and with and I will perform magic</h1>
+        <p><strong>You:</strong> {{ user_input }}</p>
+        <p><strong>ChatBot:</strong> {{ chatbot_response }}</p>
+        <form method="post" action=" "{{url_for('chatbot')}}>
+            <label for="message">Message:</label>
+            <input type="text" id="message" name="message" required/>
+            <button type="submit">Send</button>
+        </form>
+    </body>
+</html>
