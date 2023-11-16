@@ -22,26 +22,25 @@ def chatbot():
     # Get user input from form
     user_input = request.form["message"]
     # Get chatbot response from OpenAI
-    prompt = f"Q: {user_input}\nA:"
+    prompt = f"Q: {user_input}\nChatbot:"
     chat_history = []
     response = openai.Completion.create(
-        engine="davinci",
+        engine="text-davinci-002",
         prompt=prompt,
-        temperature=0.9,
-        max_tokens=150,
+        temperature=0.5,
+        max_tokens=60,
         top_p=1,
         frequency_penalty=0,
-        presence_penalty=0.6,
-        stop=["\nUser", " \nChatbot", " AI:"]
+        stop=["\nUser", " \nChatbot"]
     )
     # Store chatbot response in variable
-    chatbot_response = response["choices"][0]["text"]
+    chatbot_response = response.choices[0].text.strip()
 
     #Add user input and chatbot response to chat history
-    chat_history.append(f"User: {user_input}\nChatbot: {chatbot_response}")
+    chat_history.append(f"User: {user_input}\nChatbot: {bot_response}")
 
     # Render chatbot response in template
-    return render_template("index.html", user_input=user_input, chatbot_response=chatbot_response)
+    return render_template("chatbot.html", user_input=user_input, bot_response=bot_response)
 
 #Run app
 if __name__ == "__main__":

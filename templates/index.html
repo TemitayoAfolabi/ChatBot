@@ -1,76 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Home</title>
-        <style>
-            /* Add some styling to the page */
-            body {
-                background-color: #f2f2f2;
-                font-family: Arial, sans-serif;
-            }
-            h1 {
-                color: #333;
-                text-align: center;
-                margin-top: 50px;
-            }
-            form {
-                display: flex;
-                justify-content: center;
-                margin-top: 30px;
-            }
-            label {
-                font-size: 20px;
-                margin-right: 10px;
-            }
-            input[type="text"] {
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 5px;
-                border: none;
-                width: 300px;
-            }
-            button[type="submit"] {
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                margin-left: 10px;
-            }
-            button[type="submit"]:hover {
-                background-color: #3e8e41;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Ask a question and I will perform magic</h1>
-        <form method="post" action="{{url_for('chatbot')}}">
-            <label for="message">Message:</label>
-            <input type="text" id="message" name="message" required/>
-            <button type="submit">Send</button>
-        </form>
-        <div id="response">
-            <!-- Add a response section to the page -->
-        </div>
-        <script>
-            // Add some interactivity to the page
-            const form = document.querySelector('form');
-            const input = document.querySelector('input');
-            const response = document.querySelector('#response');
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const message = input.value;
-                input.value = '';
-                const res = await fetch(`/chatbot?message=${message}`);
-                const data = await res.json();
-                const p = document.createElement('p');
-                p.textContent = data.response;
-                response.appendChild(p);
-            });
-        </script>
-    </body>
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chat with me</h1>
+    <form  method="POST" action="{{ url_for('chatbot')}}">
+        <label for="message">Message:</label>
+        <input type="text" name="message" id="message" required>
+        <button type="submit">Send</button>
+    </form>
+</body>
 </html>
