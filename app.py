@@ -37,10 +37,10 @@ def chatbot():
     chatbot_response = response.choices[0].text.strip()
 
     #Add user input and chatbot response to chat history
-    chat_history.append(f"User: {user_input}\nChatbot: {bot_response}")
+    chat_history.append(f"User: {user_input}\nChatbot: {chatbot_response}")
 
     # Render chatbot response in template
-    return render_template("chatbot.html", user_input=user_input, bot_response=bot_response)
+    return render_template("chatbot.html", user_input=user_input, bot_response=chatbot_response)
 
 #Run app
 if __name__ == "__main__":
